@@ -16,6 +16,7 @@ import { useLazyLoadQuery } from "react-relay";
 import { useParams } from "react-router";
 import { ShoppingListQuery } from "./__generated__/ShoppingListQuery.graphql";
 import { Print } from "@mui/icons-material";
+import moment from 'moment';
 
 const shoppingListQuery = graphql`
   query ShoppingListQuery($rowId: BigInt!) {
@@ -25,6 +26,7 @@ const shoppingListQuery = graphql`
       person {
         fullName
       }
+      startDate
       mealPlanEntries {
         nodes {
           meal {
@@ -40,6 +42,7 @@ const shoppingListQuery = graphql`
                 substituteIngredient {
                   name
                 }
+                substituteReason
                 matchedProducts {
                   nodes {
                     id
@@ -69,23 +72,25 @@ export const ShoppingList = () => {
     id: string;
     name: string;
     matchedProducts: Product[]
+    substituteIngredient: string;
+    substituteReason: string | readonly (string | null)[] | null;
   }
 
   interface Product {
     id: string;
     productName: string;
-    price: any;
+    price: number;
   }
 
   interface MealIngredient {
     mealsById: Meal[];
-    quantity: any[];
+    quantity: number[];
     unit: string[];
-    substituteIngredient: string;
   }
   
   const mealsByIngredient: Map<string, MealIngredient> = new Map<string, MealIngredient>();
   const mealCounts = new Map<string, number>();
+  const formattedDate = mealPlan?.startDate ? moment(mealPlan?.startDate).format('MMMM Do, YYYY') : '';
 
   mealPlan?.mealPlanEntries.nodes.forEach((mealPlanEntry) => {
     const mealId = mealPlanEntry.meal?.id;
@@ -105,6 +110,9 @@ export const ShoppingList = () => {
         const quantity = ingredient.quantity;
         const unit = ingredient.unit;
         const subIngredient = ingredient.substituteIngredient?.name.toLowerCase() || "";
+        const subReason = Array.isArray(ingredient.substituteReason)
+        ? (ingredient.substituteReason || []).join(", ")
+        : "";
         const matchedProducts = ingredient.matchedProducts.nodes.map(product => ({
           id: product.id,
           productName: product.nameEn, 
@@ -121,19 +129,17 @@ export const ShoppingList = () => {
             const mealExists = existingIngredientDetails.mealsById.some(meal => meal.id === mealId);
 
             if (!mealExists) {
-              existingIngredientDetails.mealsById.push({ id: mealId, name: mealName, matchedProducts: matchedProducts});
+              existingIngredientDetails.mealsById.push({ id: mealId, name: mealName, matchedProducts: matchedProducts, substituteIngredient: subIngredient, substituteReason: subReason });
               existingIngredientDetails.quantity.push(quantity);
               existingIngredientDetails.unit.push(unit);
               
             }
-            existingIngredientDetails.substituteIngredient = subIngredient;
             mealsByIngredient.set(ingredientName, existingIngredientDetails);
           } else {
             mealsByIngredient.set(ingredientName, {
-              mealsById: [{ id: mealId, name: mealName, matchedProducts: matchedProducts }],
+              mealsById: [{ id: mealId, name: mealName, matchedProducts: matchedProducts, substituteIngredient: subIngredient, substituteReason: subReason }],
               quantity: [quantity],
               unit: [unit],
-              substituteIngredient: subIngredient
             });
           }
         }
@@ -153,7 +159,7 @@ export const ShoppingList = () => {
           </Grid>
           <Grid item xs={8}>
             <Typography variant="h4">
-              Shopping List - {mealPlan?.nameEn} &nbsp;
+              Shopping List - {mealPlan?.nameEn} &nbsp; 
               <Button
                 onClick={() => {
                   window.print();
@@ -161,6 +167,11 @@ export const ShoppingList = () => {
               >
                 <Print></Print>
               </Button>
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="body1">
+              {mealPlan?.startDate && `Start Date: ${formattedDate}`}
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -188,11 +199,6 @@ export const ShoppingList = () => {
                         <Checkbox />
                         <div>
                           {ingredientName}
-                          {ingredientDetails.substituteIngredient !== "" &&
-                            <div style={{ fontStyle: 'italic' }}>
-                              Substitutes: {ingredientDetails.substituteIngredient}
-                            </div>
-                          }
                         </div>
                       </div>
                     </TableCell>
@@ -202,6 +208,16 @@ export const ShoppingList = () => {
                           <li>
                             {ingredientDetails.mealsById[index].name} - {mealQuantities} {ingredientDetails.unit[index]} 
                             {mealCounts.get(ingredientDetails.mealsById[index].id)! > 1 && ` x${mealCounts.get(ingredientDetails.mealsById[index].id)}`}
+                            {ingredientDetails.mealsById[index].substituteIngredient !== "" &&
+                            <div style={{ fontStyle: 'italic', marginLeft: '2em' }}>
+                              Substitutes: {ingredientDetails.mealsById[index].substituteIngredient}
+                            </div>
+                            }
+                            {ingredientDetails.mealsById[index].substituteReason !== "" && (
+                              <div style={{ fontStyle: 'italic', marginLeft: '2em' }}>
+                                Reason: {ingredientDetails.mealsById[index].substituteReason}
+                              </div>
+                            )}
                           </li>
                         </div>
                       ))}
