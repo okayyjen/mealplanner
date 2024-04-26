@@ -16,6 +16,7 @@ import { useLazyLoadQuery } from "react-relay";
 import { useParams } from "react-router";
 import { ShoppingListQuery } from "./__generated__/ShoppingListQuery.graphql";
 import { Print } from "@mui/icons-material";
+import moment from 'moment';
 
 const shoppingListQuery = graphql`
   query ShoppingListQuery($rowId: BigInt!) {
@@ -25,6 +26,7 @@ const shoppingListQuery = graphql`
       person {
         fullName
       }
+      startDate
       mealPlanEntries {
         nodes {
           meal {
@@ -40,6 +42,7 @@ const shoppingListQuery = graphql`
                 substituteIngredient {
                   name
                 }
+                substituteReason
                 matchedProducts {
                   nodes {
                     id
@@ -65,27 +68,36 @@ export const ShoppingList = () => {
   );
   const mealPlan = node.mealPlan;
 
+  interface SubIngredientDetail {
+    substituteName: string;
+    substituteReason: string | readonly (string | null)[] | null;
+    substituteUnit: string;
+    substituteQuantity: number;
+  }
+
   interface Meal {
     id: string;
     name: string;
     matchedProducts: Product[]
+    subIngredient: SubIngredientDetail;
   }
 
   interface Product {
     id: string;
     productName: string;
-    price: any;
+    price: number;
   }
 
   interface MealIngredient {
     mealsById: Meal[];
-    quantity: any[];
+    productKeyword: string;
+    quantity: number[];
     unit: string[];
-    substituteIngredient: string;
   }
   
   const mealsByIngredient: Map<string, MealIngredient> = new Map<string, MealIngredient>();
   const mealCounts = new Map<string, number>();
+  const formattedDate = mealPlan?.startDate ? moment(mealPlan?.startDate).format('MMMM Do, YYYY') : '';
 
   mealPlan?.mealPlanEntries.nodes.forEach((mealPlanEntry) => {
     const mealId = mealPlanEntry.meal?.id;
@@ -100,40 +112,55 @@ export const ShoppingList = () => {
     }
     if (mealPlanEntry.meal?.ingredients) {
       mealPlanEntry.meal.ingredients.nodes.forEach((ingredient) => {
-        let ingredientName = ingredient.name.toLowerCase();
-        const productKeyword = ingredient.productKeyword.toLowerCase();
+        const ingredientName = ingredient.name.toLowerCase();
+        const keyword = ingredient.productKeyword.toLowerCase();
         const quantity = ingredient.quantity;
         const unit = ingredient.unit;
         const subIngredient = ingredient.substituteIngredient?.name.toLowerCase() || "";
+        const subReason = Array.isArray(ingredient.substituteReason)
+        ? (ingredient.substituteReason || []).join(", ")
+        : "";
         const matchedProducts = ingredient.matchedProducts.nodes.map(product => ({
           id: product.id,
           productName: product.nameEn, 
           price: product.price
         }));
 
-        if (mealId && mealName) {
-          if (ingredientName !== productKeyword){
-            ingredientName = `${ingredientName} | ${productKeyword}`;
+        let subQuantity = -1;
+        let subUnit = "";
+        
+        if(subIngredient.length > 0){
+          const mainIngredientDetails = mealsByIngredient.get(subIngredient);
+          if (mainIngredientDetails) {
+            const mainIngredientMealIndex = mainIngredientDetails.mealsById.findIndex(meal => meal.id === mealId);
+            if (mainIngredientMealIndex >= 0) {
+              subQuantity = mainIngredientDetails.quantity[mainIngredientMealIndex];
+              subUnit = mainIngredientDetails.unit[mainIngredientMealIndex];
+            }
           }
+
+        }
+
+        if (mealId && mealName) {
 
           if (mealsByIngredient.has(ingredientName)) {
             const existingIngredientDetails = mealsByIngredient.get(ingredientName)!;
             const mealExists = existingIngredientDetails.mealsById.some(meal => meal.id === mealId);
 
             if (!mealExists) {
-              existingIngredientDetails.mealsById.push({ id: mealId, name: mealName, matchedProducts: matchedProducts});
+              existingIngredientDetails.mealsById.push({ id: mealId, name: mealName, matchedProducts: matchedProducts, subIngredient: { substituteName: subIngredient, substituteReason: subReason, substituteQuantity: subQuantity, substituteUnit: subUnit } });
+              existingIngredientDetails.productKeyword = keyword;
               existingIngredientDetails.quantity.push(quantity);
               existingIngredientDetails.unit.push(unit);
               
             }
-            existingIngredientDetails.substituteIngredient = subIngredient;
             mealsByIngredient.set(ingredientName, existingIngredientDetails);
           } else {
             mealsByIngredient.set(ingredientName, {
-              mealsById: [{ id: mealId, name: mealName, matchedProducts: matchedProducts }],
+              mealsById: [{ id: mealId, name: mealName, matchedProducts: matchedProducts, subIngredient: { substituteName: subIngredient, substituteReason: subReason, substituteQuantity: subQuantity, substituteUnit: subUnit } }],
+              productKeyword: keyword,
               quantity: [quantity],
               unit: [unit],
-              substituteIngredient: subIngredient
             });
           }
         }
@@ -153,7 +180,7 @@ export const ShoppingList = () => {
           </Grid>
           <Grid item xs={8}>
             <Typography variant="h4">
-              Shopping List - {mealPlan?.nameEn} &nbsp;
+              Shopping List - {mealPlan?.nameEn} &nbsp; 
               <Button
                 onClick={() => {
                   window.print();
@@ -161,6 +188,11 @@ export const ShoppingList = () => {
               >
                 <Print></Print>
               </Button>
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="body1">
+              {mealPlan?.startDate && `Start Date: ${formattedDate}`}
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -188,11 +220,7 @@ export const ShoppingList = () => {
                         <Checkbox />
                         <div>
                           {ingredientName}
-                          {ingredientDetails.substituteIngredient !== "" &&
-                            <div style={{ fontStyle: 'italic' }}>
-                              Substitutes: {ingredientDetails.substituteIngredient}
-                            </div>
-                          }
+                          {ingredientName !== ingredientDetails.productKeyword && ` | ${ingredientDetails.productKeyword}`}
                         </div>
                       </div>
                     </TableCell>
@@ -202,6 +230,23 @@ export const ShoppingList = () => {
                           <li>
                             {ingredientDetails.mealsById[index].name} - {mealQuantities} {ingredientDetails.unit[index]} 
                             {mealCounts.get(ingredientDetails.mealsById[index].id)! > 1 && ` x${mealCounts.get(ingredientDetails.mealsById[index].id)}`}
+                            
+                            {ingredientDetails.mealsById[index].subIngredient.substituteName !== "" &&
+                            <div style={{ fontStyle: 'italic', marginLeft: '2em' }}>
+                              Substitutes: {ingredientDetails.mealsById[index].subIngredient.substituteName} - {ingredientDetails.mealsById[index].subIngredient.substituteQuantity} {ingredientDetails.mealsById[index].subIngredient.substituteUnit}
+                              {mealCounts.get(ingredientDetails.mealsById[index].id)! > 1 && ` x${mealCounts.get(ingredientDetails.mealsById[index].id)}`}
+                            </div>
+                            }
+                            {ingredientDetails.mealsById[index].subIngredient.substituteReason !== "" && (
+                              <div style={{ fontStyle: 'italic', marginLeft: '2em' }}>
+                                Reason: {ingredientDetails.mealsById[index].subIngredient.substituteReason}
+                              </div>
+                            )}
+                            {ingredientDetails.mealsById[index].subIngredient.substituteName !== "" && ingredientDetails.mealsById[index].subIngredient.substituteReason === "" && (
+                              <div style={{ fontStyle: 'italic', marginLeft: '2em' }}>
+                                Reason: not specified
+                              </div>
+                            )}
                           </li>
                         </div>
                       ))}
