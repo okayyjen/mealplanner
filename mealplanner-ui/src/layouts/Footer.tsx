@@ -1,6 +1,19 @@
 //Reference: https://github.com/mui/material-ui/blob/master/docs/data/material/getting-started/templates/sticky-footer/StickyFooter.tsx
 import { Box, Container, Typography } from "@mui/material";
 
+const hide = `
+    @media print{
+      #hide{
+        display: none !important;
+      }
+    }
+  
+  `;
+
+  const newStyle = document.createElement('style');
+  newStyle.textContent = hide;
+  document.head.appendChild(newStyle);
+
 export function Footer() {
   return (
     <Box
@@ -15,7 +28,7 @@ export function Footer() {
             : theme.palette.grey[800],
       }}
     >
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" id='hide'>
         <Typography variant="body1" align="center">
           For Greener Village. By Civic Tech Fredericton.
         </Typography>

@@ -130,6 +130,25 @@ export const Meal = () => {
     return meal?.totalCost > 0 ? meal?.totalCost + "$" : "Not available";
   };
 
+  const customValue = () => {
+    window.print()
+  }
+
+
+  const bottomelement = `
+    @media print{
+      #bottomelement{
+        display: block !important;
+      }
+    }
+  
+  `;
+
+  const newStyle = document.createElement('style');
+  newStyle.textContent = bottomelement;
+  document.head.appendChild(newStyle);
+
+
   const displayTags = () => {
     return meal!.tags?.map((tag) => (
       <span>
@@ -234,17 +253,42 @@ export const Meal = () => {
             )}
           </Grid>
 
-          <Grid item xs={9} bgcolor={theme.palette.grey[200]}>
+          <Grid item xs={9} bgcolor={theme.palette.grey[200]} style={{position:'relative', minHeight:'100vh'}}>
             <Typography variant="h3">
               {meal?.nameEn}
               <IconButton
-                onClick={() => window.print()}
-                sx={{ marginLeft: "1rem", displayPrint: "none" }}
+                onClick={customValue}
+                sx={{ marginLeft: "1rem", displayPrint: "nabc123" }}
               >
                 <Print htmlColor={`${theme.palette.primary.dark}`}></Print>
               </IconButton>
             </Typography>
-
+            <div id="bottomelement" style={{position:'fixed',
+                                    bottom:0,
+                                    width:'100%',
+                                    textAlign:'center',
+                                    padding:'10px',
+                                    display:'none'}}> 
+            
+            <Typography variant="body1" align="center">
+            For Greener Village. By Civic Tech Fredericton.
+            </Typography>
+            <Typography variant="body2" align="center">
+            If you run into issues or have any suggestions or questions, please
+            feel free to post your{" "}
+            <a
+              href="https://www.civictechfredericton.com/gmpfeedback.html"
+              target="_blank"
+              rel="noreferrer"
+            >
+            {" "}
+            feedback
+            </a>
+            </Typography>
+            <Box display= "flex" alignItems= "center" justifyContent="center">
+            <img src="/images/CivicTechLogo.png" alt="CivicTechLogo" style={{ width: '12%', height: 'auto', marginTop: '10px' }}/>
+            </Box>
+            </div>
             <Typography variant="h4">{meal?.nameFr}</Typography>
             <Typography variant="body1">
               {meal?.categories?.map((category) => (
