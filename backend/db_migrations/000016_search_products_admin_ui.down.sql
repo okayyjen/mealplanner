@@ -1,1 +1,1 @@
-drop function if exists app.search_products;
+DROP function app.search_products(text);
