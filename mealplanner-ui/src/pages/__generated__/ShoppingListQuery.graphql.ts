@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8c08ff9248ce041d396d54adb2771665>>
+ * @generated SignedSource<<e74705206773a1fe5e7881c51c17447c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,6 +19,7 @@ export type ShoppingListQuery$data = {
     readonly person: {
       readonly fullName: string;
     } | null;
+    readonly startDate: any | null;
     readonly mealPlanEntries: {
       readonly nodes: ReadonlyArray<{
         readonly meal: {
@@ -34,6 +35,7 @@ export type ShoppingListQuery$data = {
               readonly substituteIngredient: {
                 readonly name: string;
               } | null;
+              readonly substituteReason: ReadonlyArray<string | null> | null;
               readonly matchedProducts: {
                 readonly nodes: ReadonlyArray<{
                   readonly id: string;
@@ -93,38 +95,52 @@ v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "id",
+  "name": "startDate",
   "storageKey": null
 },
 v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "name",
+  "name": "id",
   "storageKey": null
 },
 v7 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "quantity",
+  "name": "name",
   "storageKey": null
 },
 v8 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "unit",
+  "name": "quantity",
   "storageKey": null
 },
 v9 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "productKeyword",
+  "name": "unit",
   "storageKey": null
 },
 v10 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "productKeyword",
+  "storageKey": null
+},
+v11 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "substituteReason",
+  "storageKey": null
+},
+v12 = {
   "alias": null,
   "args": null,
   "concreteType": "ProductsConnection",
@@ -140,7 +156,7 @@ v10 = {
       "name": "nodes",
       "plural": true,
       "selections": [
-        (v5/*: any*/),
+        (v6/*: any*/),
         (v2/*: any*/),
         {
           "alias": null,
@@ -184,6 +200,7 @@ return {
             ],
             "storageKey": null
           },
+          (v5/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -208,7 +225,7 @@ return {
                     "name": "meal",
                     "plural": false,
                     "selections": [
-                      (v5/*: any*/),
+                      (v6/*: any*/),
                       (v2/*: any*/),
                       {
                         "alias": null,
@@ -226,11 +243,11 @@ return {
                             "name": "nodes",
                             "plural": true,
                             "selections": [
-                              (v5/*: any*/),
                               (v6/*: any*/),
                               (v7/*: any*/),
                               (v8/*: any*/),
                               (v9/*: any*/),
+                              (v10/*: any*/),
                               {
                                 "alias": null,
                                 "args": null,
@@ -239,11 +256,12 @@ return {
                                 "name": "substituteIngredient",
                                 "plural": false,
                                 "selections": [
-                                  (v6/*: any*/)
+                                  (v7/*: any*/)
                                 ],
                                 "storageKey": null
                               },
-                              (v10/*: any*/)
+                              (v11/*: any*/),
+                              (v12/*: any*/)
                             ],
                             "storageKey": null
                           }
@@ -291,10 +309,11 @@ return {
             "plural": false,
             "selections": [
               (v4/*: any*/),
-              (v5/*: any*/)
+              (v6/*: any*/)
             ],
             "storageKey": null
           },
+          (v5/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -319,7 +338,7 @@ return {
                     "name": "meal",
                     "plural": false,
                     "selections": [
-                      (v5/*: any*/),
+                      (v6/*: any*/),
                       (v2/*: any*/),
                       {
                         "alias": null,
@@ -337,11 +356,11 @@ return {
                             "name": "nodes",
                             "plural": true,
                             "selections": [
-                              (v5/*: any*/),
                               (v6/*: any*/),
                               (v7/*: any*/),
                               (v8/*: any*/),
                               (v9/*: any*/),
+                              (v10/*: any*/),
                               {
                                 "alias": null,
                                 "args": null,
@@ -350,12 +369,13 @@ return {
                                 "name": "substituteIngredient",
                                 "plural": false,
                                 "selections": [
-                                  (v6/*: any*/),
-                                  (v5/*: any*/)
+                                  (v7/*: any*/),
+                                  (v6/*: any*/)
                                 ],
                                 "storageKey": null
                               },
-                              (v10/*: any*/)
+                              (v11/*: any*/),
+                              (v12/*: any*/)
                             ],
                             "storageKey": null
                           }
@@ -365,30 +385,30 @@ return {
                     ],
                     "storageKey": null
                   },
-                  (v5/*: any*/)
+                  (v6/*: any*/)
                 ],
                 "storageKey": null
               }
             ],
             "storageKey": null
           },
-          (v5/*: any*/)
+          (v6/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "11fee9a0db6637c0fdf9e0a4dbe9ef83",
+    "cacheID": "e847ea03001565e6c3a14813eacbb418",
     "id": null,
     "metadata": {},
     "name": "ShoppingListQuery",
     "operationKind": "query",
-    "text": "query ShoppingListQuery(\n  $rowId: BigInt!\n) {\n  mealPlan(rowId: $rowId) {\n    nameEn\n    descriptionEn\n    person {\n      fullName\n      id\n    }\n    mealPlanEntries {\n      nodes {\n        meal {\n          id\n          nameEn\n          ingredients {\n            nodes {\n              id\n              name\n              quantity\n              unit\n              productKeyword\n              substituteIngredient {\n                name\n                id\n              }\n              matchedProducts {\n                nodes {\n                  id\n                  nameEn\n                  price\n                }\n              }\n            }\n          }\n        }\n        id\n      }\n    }\n    id\n  }\n}\n"
+    "text": "query ShoppingListQuery(\n  $rowId: BigInt!\n) {\n  mealPlan(rowId: $rowId) {\n    nameEn\n    descriptionEn\n    person {\n      fullName\n      id\n    }\n    startDate\n    mealPlanEntries {\n      nodes {\n        meal {\n          id\n          nameEn\n          ingredients {\n            nodes {\n              id\n              name\n              quantity\n              unit\n              productKeyword\n              substituteIngredient {\n                name\n                id\n              }\n              substituteReason\n              matchedProducts {\n                nodes {\n                  id\n                  nameEn\n                  price\n                }\n              }\n            }\n          }\n        }\n        id\n      }\n    }\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "4998e23e398865a7dcdfe226b64073cc";
+(node as any).hash = "c4010e871a993a52ad24afb2a04ce117";
 
 export default node;
