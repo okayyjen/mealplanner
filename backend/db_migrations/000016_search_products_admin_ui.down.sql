@@ -1,0 +1,1 @@
+DROP function app.search_products(text);

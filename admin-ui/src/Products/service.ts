@@ -1,43 +1,30 @@
 import { ApolloClient, gql } from "@apollo/client";
 
 const searchStringQuery = gql`
-  query SearchStrings($searchString: String!) {
-    query {
-      products(
-        filter: {
-          or: [
-            { nameEn: { includesInsensitive: $searchString } }
-            { nameFr: { includesInsensitive: $searchString } }
-            { upc: { includesInsensitive: $searchString } }
-            { tags: { contains: [$searchString] } }
-          ]
-        }
-      ) {
-        edges {
-          node {
-            rowId
-          }
-        }
+  query searchStringQuery($searchString: String) {
+    searchProducts(search: $searchString) {
+      edges {
+        node
       }
     }
   }
 `;
 
-const extractIdsFromResult = (result: QueryResponse) => {
-  const extractedProducts: ProductResultType[] = result.data.query.products.edges.map((edge) => edge.node);
-  return extractedProducts.map((id) => id.rowId);
+const splitToPipeDelimited = async (text: string) => {
+  const words = text.split(" ");
+  return words.join("|");
 };
 
 export const getSearchByString = async (
   client: ApolloClient<object>,
-  searchString: string
+  searchStringParam: string
 ): Promise<string[]> => {
+  const searchString = await splitToPipeDelimited(searchStringParam);
   const result = await client.query({
     query: searchStringQuery,
     variables: { searchString },
   });
-  const ids = await extractIdsFromResult(result);
-  return ids;
+  return result.data.searchProducts.edges.map((value: any) => value.node);
 };
 
 export type ProductResultType = {
