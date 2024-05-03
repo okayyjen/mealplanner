@@ -1,7 +1,7 @@
 #Logout From Mealplanner 
 
 ###Overview
-The logout functionality allows users to securely sign out of their accounts, ensuring the protection of their personal information and preventing unauthorized access to their account.
+The logout functionality allows users to securely logout from the Mealplanner application, preventing unauthorized access to the application.
 
 
 **Usage**
@@ -11,7 +11,8 @@ The logout functionality allows users to securely sign out of their accounts, en
     - Ensure you are logged in to your account
     - Locate the (Logout) button to the right of the top of the page, beside the account name
     - Click on the (Logout) button to initiate the logout process
-![Logout Page](https://snipboard.io/lMLQaj.jpg)
+
+![Logout Page](./Meal_Planner_logout.png)
 *Screenshot: Logout Page*
 ### Additional Notes
 - Logging out is essential to protect your account from unauthorized access, especially when using shared devices or public computers

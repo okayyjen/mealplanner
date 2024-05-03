@@ -1,4 +1,2 @@
-# Mealplanner User Guide
-
-TBD
+# About Mealplanner
 
