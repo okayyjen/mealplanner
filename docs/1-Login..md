@@ -17,7 +17,7 @@ The login page allows registered users to sign in to the Mealplanner application
 ![Login Page](./Mealplanner_Login.png)
 *Screenshot: Login Page*
 
-###Additional Notes
+### Additional Notes
 - Ensure you are using a secure and trusted internet connection when entering your login credentials
 - For security reasons, it is recommended to log out after each session, especially when using shared devices or public computers
 - For any questions or assistance, please contact your administrator
