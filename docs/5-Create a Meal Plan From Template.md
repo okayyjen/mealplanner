@@ -1,6 +1,6 @@
-#Create a Meal Plan from a Template
+# Create a Meal Plan from a Template
 
-###Overview
+### Overview
 Creating a meal plan from a template allows users to quickly generate meal plans based on predefined meal templates. This documentation provides step-by-step instructions on how to create a meal plan from a template and assign it to a user.
 
 **Usage**
