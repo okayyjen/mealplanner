@@ -1,6 +1,6 @@
 # Create a Meal Template
 
-###Overview
+### Overview
 Creating a meal template on GoodMealPlan allows users to define a standardized meal optins that can be reused as needed when creating meal plans. This documentation provides step-by-step instructions on how to create a meal template using the website.
 
 **Usage**
