@@ -1,6 +1,6 @@
-#Logout From Mealplanner 
+# Logout From Mealplanner 
 
-###Overview
+### Overview
 The logout functionality allows users to securely logout from the Mealplanner application, preventing unauthorized access to the application.
 
 
