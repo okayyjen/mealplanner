@@ -266,10 +266,14 @@ export const Match = (props: CreateProps) => {
 const IngredientName = ({ data, mealData }: { data: any; mealData: any }) => {
   return (
     <>
+    {console.log(mealData)}
       <br />
-      <b> Ingredient:</b> <i>{data.name}</i>
+      <b> Ingredient:</b> <i> {data.name}</i>
       <br />
-      <b> Meal:</b> <i>{mealData.nameEn}</i>
+      <b> Meal:</b>{" "}
+      <Link to={`/meals/${mealData.id}/ingredients`}>
+        <i> {mealData.nameEn}</i>{" "}
+      </Link>
     </>
   );
 };
