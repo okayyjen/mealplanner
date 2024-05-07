@@ -13,6 +13,7 @@ nav:
   - Admin UI: 
     - Overview: admin-ui.md
     - Manage User: manage-users.md
+    - Meals: admin-ui-meals.md
 
 theme:
   name: readthedocs
