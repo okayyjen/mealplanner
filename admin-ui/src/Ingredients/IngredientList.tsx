@@ -20,7 +20,7 @@ const IngredientActions = ({ id, mealName }: { id: string; mealName: string }) =
       <Typography variant="body1" style={{ marginRight: "auto" }}>
         <span style={{ fontWeight: "bold" }}>Meal: </span>
         <span style={{ fontStyle: "italic" }}>
-          <Link to={`/meals`}>
+          <Link to={`/meals/${id}/show`}>
             {mealName}
           </Link>
         </span>
