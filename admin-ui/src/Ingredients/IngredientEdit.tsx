@@ -37,7 +37,7 @@ export const IngredientEdit = (props: EditProps) => {
           fullWidth
           helperText="Search keyword for a buyer"
         />
-        <ReferenceInput source="substituteIngredientId" reference="ingredients">
+        <ReferenceInput source= "mealId" reference="ingredients" filter = {{mealId : id}}>
           <AutocompleteInput
             optionText={"name"}
             fullWidth
