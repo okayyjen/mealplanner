@@ -8,7 +8,7 @@ import {
   TextInput,
   useRecordContext,
 } from "react-admin";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export const IngredientEdit = (props: EditProps) => {
   const { id, ingredientId } = useParams();
@@ -59,7 +59,7 @@ const MealName = () => {
   return (
     <>
       <br />
-      &nbsp;&nbsp;<b> Meal:</b> <i>{ingredient.meal.nameEn}</i>
+      &nbsp;&nbsp;<b> Meal:</b> <Link to={`/meals/${ingredient.mealId}/ingredients`}><i>{ingredient.meal.nameEn}</i></Link>
       <br />
       &nbsp;&nbsp;<b> Ingredient:</b> <i>{ingredient.name}</i>
     </>
