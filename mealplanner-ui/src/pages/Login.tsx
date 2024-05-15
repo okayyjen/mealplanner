@@ -58,9 +58,7 @@ export const Login = () => {
     }
   );
   if (data.gqLocalState.currentUser?.personID) {
-    if(!getCurrentPerson().personTerms)
-      return <Navigate to="terms" replace />;
-    return <Navigate to="mealplans" replace />;
+    return <Navigate to="/mealplans" replace/>;
   }
 
   return (
