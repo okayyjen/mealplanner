@@ -2,12 +2,15 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import { Checkbox } from '@mui/material';
 import { useState } from 'react';
-import {  fetchCurrentPerson, logout, updatePersonTerms } from "../state/state";
-import { useNavigate } from 'react-router';
+import {  fetchCurrentPerson, getCurrentPerson, logout, updatePersonTerms } from "../state/state";
+import { Navigate, useLocation, useNavigate } from 'react-router';
 
 export const TermsAndConditions = () => {
   const [isAccepted, setIsAccepted] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const isTermsPage = location.pathname === '/terms';
+  const [currentPerson, setCurrentPerson] = useState(getCurrentPerson());
 
   const handleReject = async () => {
     await logout();
@@ -21,6 +24,10 @@ export const TermsAndConditions = () => {
     const data = await fetchCurrentPerson();
     navigate("/mealplans");
   };
+
+  if (isTermsPage && currentPerson.personID === "") {
+    return <Navigate to="/" replace/>;
+  }
 
   return (
      <div style={{ margin: '50px', textAlign: 'center' }}>
