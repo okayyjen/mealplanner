@@ -52,7 +52,6 @@ export const IngredientCreate = (props: CreateProps) => {
             optionText={"name"}
             fullWidth
             helperText="The primary ingredient name for which this ingredient is a substitute of"
-            label='Primary Ingredient'
           />
         </ReferenceInput>
         <TextInput
