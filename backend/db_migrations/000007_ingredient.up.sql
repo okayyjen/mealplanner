@@ -14,6 +14,8 @@ create table if not exists app.ingredient (
     updated_at timestamp default now() not null
 );
 
+-- changing meal_id by removing "not null" should probably allow accepting null values for Primary-Substitute Ingredient part. 
+
 comment on table app.ingredient is 'Ingredients in the recipe referred with meal_id. Specific to the recipe, not to be confused with the Product quantity and unit.';
 comment on column app.ingredient.unit is 'The measurement type to be used by the preparer, i.e. tsp, tbsp, cup, mL, etc.';
 comment on column app.ingredient.code is 'Unique code for the ingredient such 1, 2, 3, to later combine as M001-I01';
