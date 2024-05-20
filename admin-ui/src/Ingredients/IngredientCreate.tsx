@@ -47,7 +47,7 @@ export const IngredientCreate = (props: CreateProps) => {
           helperText="Search keyword for a buyer"
           validate={required()}
         />
-        <ReferenceInput source= "mealId" reference="ingredients" filter = {{mealId : id}}>
+        <ReferenceInput source= "substituteIngredientId" reference="ingredients" filter = {{mealId : id}}>
           <AutocompleteInput
             optionText={"name"}
             fullWidth
