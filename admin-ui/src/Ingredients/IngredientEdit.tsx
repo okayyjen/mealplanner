@@ -12,7 +12,6 @@ import { Link, useParams } from "react-router-dom";
 
 export const IngredientEdit = (props: EditProps) => {
   const { id, ingredientId } = useParams();
-
   return (
     <Edit
       resource="ingredients"
@@ -37,7 +36,10 @@ export const IngredientEdit = (props: EditProps) => {
           fullWidth
           helperText="Search keyword for a buyer"
         />
-        <ReferenceInput source= "mealId" reference="ingredients" filter = {{mealId : id}}>
+        <ReferenceInput 
+          source= "substituteIngredientId" 
+          reference="ingredients" 
+          filter = {{mealId : id}}>
           <AutocompleteInput
             optionText={"name"}
             fullWidth
