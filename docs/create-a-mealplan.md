@@ -13,7 +13,7 @@ Creating a meal plan on Mealplanner (GoodMealPlan) allows users to generate pers
 2. **Create a New Meal Plan**
     - On the meal plans page, click on the "Create Meal Plan" button
 
-![Login Page](./Create _Mealplan1.png)
+![Login Page](create-mealplan1.png)
 *Screenshot: Create Meal Plan*
          
 3. **Enter Meal Plan Information**
@@ -23,7 +23,7 @@ Creating a meal plan on Mealplanner (GoodMealPlan) allows users to generate pers
     - Provide a name and a description for the meal plan
     - Add tags based on dietary preferences such as vegetarian, vegan, gluten-free, etc
 
-![Enter Meal Plan Information](./Create _Mealplan2.png)
+![Enter Meal Plan Information](create-mealplan2.png)
 *Screenshot: Enter Meal Plan Information*
 
 4. **Set a Meal Plan**
@@ -32,7 +32,7 @@ Creating a meal plan on Mealplanner (GoodMealPlan) allows users to generate pers
     - Click on any meal from the left side menu. In the meal plan calendar view on the right side of the page, click on the desired meal slot (e.g., breakfast, lunch, dinner, snacks)
     - Determine the number of meals/days and repeat the above step accordingly
 
-![Set a Meal Plan](./Set_Mealplan.png)
+![Set a Meal Plan](set-mealplan.png)
 *Screenshot: Set a Meal Plan* 
 
 ### Additional Notes
