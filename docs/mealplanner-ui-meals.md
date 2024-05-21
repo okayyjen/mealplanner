@@ -1,6 +1,6 @@
 # MealPlanner (GoodMealPlan) Website Documentation
 
-## Meals (MealPlanner-Ui)
+## Meals (MealPlanner-UI)
 
 ### 1.1 Viewing a Meal
 
@@ -20,7 +20,7 @@ To view a meal, please follow the steps below:
 3. **Click on the Meal**
     - Click the meal to see the meal recipe, ingredients, tips and many more. 
     
-![View Meals] (./meals-section.jpeg)
+![View Meals](meals-section.jpeg)
 
 ### 1.2 Searching a Meal by Name
 
@@ -42,7 +42,7 @@ To search a meal by name, please follow the steps below:
 3. **Search for a meal by its name.**
     - On the Search column, search the meal by name. 
 
-![Search meal by name] (./search-ways.jpeg)
+![Search meal by name](search-ways.jpeg)
 	
 ### 1.3 Searching a Meal by Tag
 
@@ -64,7 +64,7 @@ To search a meal by tag, please follow the steps below:
 3. **Search for a meal by tag.**
     - Select the `Tags` and choose the appropriate tag from the list of tags shown.
 
-![Search meal by tag] (./search-ways.jpeg)
+![Search meal by tag](search-ways.jpeg)
 
 
 ### 1.4 View Favorite Meal
@@ -87,7 +87,7 @@ To search a meal by favourite, please follow the steps below:
 3. **View your favorite meal.**
     - Select the `My Favorites` to view all favorite meals. 
 
-![View favorite] (./search-ways.jpeg)
+![View favorite](search-ways.jpeg)
 
 
 ### 1.5 Marking a meal as favourite
@@ -109,7 +109,7 @@ To delete a meal, please follow the steps below:
 3. **Mark meal as Favourite**
     - Click on the heart symbol to mark the meal as favorite. 
 
-![Mark meal as favorite] (./favorite-meal.jpeg)
+![Mark meal as favorite](favorite-meal.jpeg)
 	
 ### 1.5 Printing a Meal
 
@@ -130,7 +130,7 @@ To delete a meal, please follow the steps below:
 3. **Print the Meal**
     - Click on a meal of your choice and click on the print button to print the meal. 
 
-![Print meal] (./print-meal.jpeg)
+![Print meal](print-meal.jpeg)
 
 ### Additional Notes
 For any questions or assistance, please contact your administrator

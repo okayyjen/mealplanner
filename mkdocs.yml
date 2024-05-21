@@ -7,9 +7,11 @@ site_name: Mealplanner (Good Meal Plan) Guide
 nav:
   - Home: index.md
   - Front End: 
+    - Login: login.md
+    - Logout: logout.md
     - Create a Mealplan: create-a-mealplan.md
     - Create a Meal Template: create-a-meal-template.md
-    - Viewing Meals: viewing-meals.md
+    - Finding Meals: mealplanner-ui-meals.md
   - Admin UI: 
     - Overview: admin-ui.md
     - Manage User: manage-users.md
