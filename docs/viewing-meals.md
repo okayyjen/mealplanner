@@ -1,4 +1,0 @@
-# Viewing the Meals Catalog
-
-...
-

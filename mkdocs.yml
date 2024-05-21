@@ -11,10 +11,12 @@ nav:
     - Logout: logout.md
     - Create a Mealplan: create-a-mealplan.md
     - Create a Meal Template: create-a-meal-template.md
+    - Create a Mealplan from a Template: create-mealplan-from-template.md
+    - Delete a Mealplan: delete-a-mealplan.md
     - Finding Meals: mealplanner-ui-meals.md
+    - View Shopping List: view-shopping-list.md
   - Admin UI: 
-    - Overview: admin-ui.md
-    - Manage User: manage-users.md
+    - Nutrition: nutrition1.md
     - Meals: admin-ui-meals.md
 
 theme:

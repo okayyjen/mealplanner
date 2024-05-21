@@ -24,7 +24,7 @@ Once logged in, you'll be directed to the new page from left pane select product
 3. **Click the Create button**
     - Click the `Create` button in the top right part of the admin-ui page. 
     
-![Create Meal] (./create-meal.jpeg)
+![Create Meal](create-meal.jpeg)
 
 4. **Add the Meal details and Create the Meal**
 	- Enter the Name of the meal in English or/and French.
@@ -40,7 +40,7 @@ Once logged in, you'll be directed to the new page from left pane select product
 	- Enter any relevant Tips for the meal.
 	- Click Save to Creat the Meal.
 
-![Meal Entry Fields] (./meal-entry-fields.jpeg)
+![Meal Entry Fields](meal-entry-fields.jpeg)
 
 ### 1.2 Viewing a Meal
 
@@ -68,7 +68,7 @@ Once logged in, you'll be directed to the new page from left pane select product
 	- Click the Show button to view the meal.
 	- Click the necessary tabs (Method, Summary, Nutrition and ingredients) if needed to view those sections of a meal.
 
-![View a Meal] (./view-a-meal.jpeg)
+![View a Meal](view-a-meal.jpeg)
 	
 ### 1.3 Editing a Meal
 
@@ -97,7 +97,7 @@ Once logged in, you'll be directed to the new page from left pane select product
 	- Out of all available columns, make the necessary changes.
 	- Click the Save button in the bottom of the page to save the changes.
 
-![View a Meal] (./view-a-meal.jpeg)
+![View a Meal](view-a-meal.jpeg)
 
 ### 1.3 Deleting a Meal
 
@@ -128,9 +128,9 @@ Once logged in, you'll be directed to the new page from left pane select product
 	- Click on the checkbox on the right side of the drop-down arrow
 	- Click the red-colored `Delete` button on the top right of the admin page. 
 	
-![Checkbox] (./checkbox.jpeg)
+![Checkbox](checkbox.jpeg)
 
-![Delete a Meal] (./delete-a-meal.jpeg)
+![Delete a Meal](delete-a-meal.jpeg)
 
 ### Additional Notes
 For any questions or assistance, please contact your administrator

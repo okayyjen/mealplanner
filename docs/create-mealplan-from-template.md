@@ -16,7 +16,7 @@ Creating a meal plan from a template allows users to quickly generate meal plans
     - Click on the option to copy or duplicate the selected template
     - This action creates a new meal plan from the template that you can customize later on
 
-![Copy a Template](./Copy_Template.png)
+![Copy a Template](Copy_Template.png)
 *Screenshot: Copy a Template*
  
 3. **Customize Meal Plan**
@@ -24,7 +24,7 @@ Creating a meal plan from a template allows users to quickly generate meal plans
     -  Assign the meal plan to the intended user
     - Perform any modification to the  meal plan as required
 
- ![Customize Meal Plan](./Customize_Meal_Plan.png)
+ ![Customize Meal Plan](Customize_Meal_Plan.png)
 *Screenshot: Customize Meal Plan*
 
 ### Additional Notes
