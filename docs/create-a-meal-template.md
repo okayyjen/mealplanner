@@ -13,7 +13,7 @@ Creating a meal template on GoodMealPlan allows users to define a standardized m
 2. **Create a New Meal Template**
     - On the meal plans page, click on the "Create Meal Plan" button
 
-![Create a New Meal Template](./Create _Mealplan1.png)
+![Create a New Meal Template](create-mealplan1.png)
 *Screenshot 1: Create a New Meal Template*
 
 2. **Enter New Meal Plan Template Information**
