@@ -1,3 +1,4 @@
+import { Print } from "@mui/icons-material";
 import {
   Button,
   Checkbox,
@@ -12,11 +13,10 @@ import {
   Typography
 } from "@mui/material";
 import { graphql } from "babel-plugin-relay/macro";
+import moment from 'moment';
 import { useLazyLoadQuery } from "react-relay";
 import { useParams } from "react-router";
 import { ShoppingListQuery } from "./__generated__/ShoppingListQuery.graphql";
-import { Print } from "@mui/icons-material";
-import moment from 'moment';
 
 const shoppingListQuery = graphql`
   query ShoppingListQuery($rowId: BigInt!) {
@@ -169,6 +169,15 @@ export const ShoppingList = () => {
   });
   return (
     <>
+    <style>
+        {`
+          @media print and (orientation: portrait) {
+            .rowHeightPortrait {
+              height: 120px; /* Adjust this value as needed */
+            }
+          }
+        `}
+      </style>
       {Array.from(mealsByIngredient.entries()).length === 0 ? (
           <h3 style={{ textAlign: "center" }}>There are no meals added to this mealplan </h3>
       ) : (
@@ -213,8 +222,8 @@ export const ShoppingList = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {Array.from(mealsByIngredient.entries()).map(([ingredientName, ingredientDetails]) => (
-                  <TableRow key={ingredientName}>
+              {Array.from(mealsByIngredient.entries()).map(([ingredientName, ingredientDetails], index) => (
+                  <TableRow className="rowHeightPortrait" key={ingredientName}  style={((index + 1) % 6 === 0) ? { breakBefore: "always" } : {}} >
                     <TableCell>
                       <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Checkbox />
