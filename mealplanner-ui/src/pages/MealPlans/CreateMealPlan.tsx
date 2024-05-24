@@ -144,24 +144,26 @@ export const CreateMealPlan = ({ connection, refetch }: { connection: string, re
          
             <DialogContent>
               <Grid container columns={6} spacing={2}>
-              {planType === "mealPlan" && (
-                <Grid item xs={6}>
-                  <Autocomplete
-                    options={allUsers || []}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Assign user"
-                        id="user"
-                        variant="filled"
-                      />
-                    )}
-                    onChange={(e, value) => {
-                      setUserId(value?.rowId);
-                    }}
-                  ></Autocomplete>
-                </Grid>
-                )}
+							{getCurrentPerson().personRole !== "app_user"  ? (
+			  					planType === "mealPlan" && (
+                	<Grid item xs={6}>
+                  	<Autocomplete
+                    	options={allUsers || []}
+                    	renderInput={(params) => (
+                      	<TextField
+                        	{...params}
+                        	label="Assign user"
+                        	id="user"
+                        	variant="filled"
+                      	/>
+                    	)}
+                    	onChange={(e, value) => {
+                    		setUserId(value?.rowId);
+                    	}}
+                  	></Autocomplete>
+                	</Grid>
+                	)
+								) : null}
                 <Grid item xs={6}>
               {planType === "mealPlan" && (
                 <LocalizationProvider dateAdapter={AdapterDayjs}>

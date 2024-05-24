@@ -13,7 +13,7 @@ import { graphql } from "babel-plugin-relay/macro";
 import React, { useState } from "react";
 import { useFragment, useLazyLoadQuery } from "react-relay";
 import { useNavigate } from "react-router";
-import { updateMealPlanName } from "../../state/state";
+import { updateMealPlanName, getCurrentPerson } from "../../state/state";
 import { MealPlanHeaderAllUsersQuery } from "./__generated__/MealPlanHeaderAllUsersQuery.graphql";
 import { MealPlanHeader_mealPlan$key } from "./__generated__/MealPlanHeader_mealPlan.graphql";
 import { DatePicker } from "@mui/x-date-pickers";
@@ -145,7 +145,7 @@ export const MealPlanHeader: React.FC<HeaderProps> = ({ mealPlan }) => {
               </Typography>
             )}
             <Typography padding="0.75rem 1rem"></Typography>
-            {isEditUser ? (
+            {isEditUser && getCurrentPerson().personRole !== "app_user"  ? (
               <Autocomplete
                 sx={{
                   ".css-i4bv87-MuiSvgIcon-root": {
@@ -183,7 +183,7 @@ export const MealPlanHeader: React.FC<HeaderProps> = ({ mealPlan }) => {
                   />
                 )}
               ></Autocomplete>
-            ) : (
+            ) : getCurrentPerson().personRole !== "app_user" ? ( 
               <Typography
                 padding="0.75rem 0"
                 color="primary.contrastText"
@@ -202,7 +202,7 @@ export const MealPlanHeader: React.FC<HeaderProps> = ({ mealPlan }) => {
                   ? data.person.fullName
                   : "No User Assigned"}
               </Typography>
-            )}
+            ): null }
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               {!data.isTemplate ? (
                 <DatePicker
