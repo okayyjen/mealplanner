@@ -14,6 +14,7 @@ import { FavoriteMealPage } from "./pages/Meals/PersonFavoriteMeals";
 import { ShoppingList } from "./pages/ShoppingList";
 import environment from "./relay/environment";
 import { fetchCurrentPerson, initState } from "./state/state";
+import { TermsAndConditions } from "./pages/TermsAndConditions";
 
 const theme = createTheme({
   palette: {
@@ -106,7 +107,7 @@ function App() {
                 <Suspense fallback={"loading inner..."}>
                   {/* <LoggedIn> */}
                   <Meal />
-                  {/* <LoggedIn> */}
+                  {/* </LoggedIn> */}
                 </Suspense>
               }
             />
@@ -117,6 +118,16 @@ function App() {
                   <LoggedIn>
                     <FavoriteMealPage />
                   </LoggedIn>
+                </Suspense>
+              }
+            />
+            <Route
+              path={"/terms"}
+              element={
+                <Suspense fallback={"loading terms.."}>
+                  {/* <LoggedIn> */}
+                    <TermsAndConditions />
+                  {/* </LoggedIn> */}
                 </Suspense>
               }
             />
