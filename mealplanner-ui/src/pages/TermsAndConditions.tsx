@@ -1,5 +1,5 @@
 import Button from '@mui/material/Button';
-import { Checkbox, Container, FormControlLabel, List, ListItem, ListItemText, Typography } from '@mui/material';
+import { Checkbox, Container, Typography } from '@mui/material';
 import { useState } from 'react';
 import {  fetchCurrentPerson, getCurrentPerson, logout, updatePersonTerms } from "../state/state";
 import { Navigate, useLocation, useNavigate } from 'react-router';
