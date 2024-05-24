@@ -134,21 +134,6 @@ export const Meal = () => {
     window.print()
   }
 
-
-  const bottomelement = `
-    @media print{
-      #bottomelement{
-        display: block !important;
-      }
-    }
-  
-  `;
-
-  const newStyle = document.createElement('style');
-  newStyle.textContent = bottomelement;
-  document.head.appendChild(newStyle);
-
-
   const displayTags = () => {
     return meal!.tags?.map((tag) => (
       <span>
@@ -254,7 +239,11 @@ export const Meal = () => {
             )}
           </Grid>
 
-          <Grid item xs={9} bgcolor={theme.palette.grey[200]} style={{position:'relative'}}>
+          <Grid item xs={9} bgcolor={theme.palette.grey[200]} style={{position:'relative'}} sx={{
+          // Use CSS @media rule to set min-height based on print or not
+          "@media print": {
+            minHeight: "100vh"}}
+          }>
             <Typography variant="h3">
               {meal?.nameEn}
               <IconButton
@@ -264,32 +253,6 @@ export const Meal = () => {
                 <Print htmlColor={`${theme.palette.primary.dark}`}></Print>
               </IconButton>
             </Typography>
-            <div id="bottomelement" style={{position:'fixed',
-                                    bottom:0,
-                                    width:'100%',
-                                    textAlign:'center',
-                                    padding:'10px',
-                                    display:'none'}}> 
-            
-            <Typography variant="body1" align="center">
-            For Greener Village. By Civic Tech Fredericton.
-            </Typography>
-            <Typography variant="body2" align="center">
-            If you run into issues or have any suggestions or questions, please
-            feel free to post your{" "}
-            <a
-              href="https://www.civictechfredericton.com/gmpfeedback.html"
-              target="_blank"
-              rel="noreferrer"
-            >
-            {" "}
-            feedback
-            </a>
-            </Typography>
-            <Box display= "flex" alignItems= "center" justifyContent="center">
-            <img src="/images/CivicTechLogo.png" alt="CivicTechLogo" style={{ width: '12%', height: 'auto', marginTop: '10px' }}/>
-            </Box>
-            </div>
             <Typography variant="h4">{meal?.nameFr}</Typography>
             <Typography variant="body1">
               {meal?.categories?.map((category) => (

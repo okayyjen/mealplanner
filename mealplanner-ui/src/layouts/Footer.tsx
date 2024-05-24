@@ -15,6 +15,18 @@ const hide = `
   document.head.appendChild(newStyle);
 
 export function Footer() {
+  const bottomelement = `
+    @media print{
+      #bottomelement{
+        display: block !important;
+      }
+    }
+  
+  `;
+
+  const newStyle = document.createElement('style');
+  newStyle.textContent = bottomelement;
+  document.head.appendChild(newStyle);
   return (
     <Box
       component="footer"
@@ -48,6 +60,32 @@ export function Footer() {
           <img src="/images/CivicTechLogo.png" alt="CivicTechLogo" style={{ width: '12%', height: 'auto', marginTop: '10px' }}/>
         </Box>
       </Container>
+      <div id="bottomelement" style={{position:'fixed',
+                                    bottom:0,
+                                    width:'100%',
+                                    textAlign:'center',
+                                    padding:'10px',
+                                    display:'none'}}> 
+            
+            <Typography variant="body1" align="center">
+            For Greener Village. By Civic Tech Fredericton.
+            </Typography>
+            <Typography variant="body2" align="center">
+            If you run into issues or have any suggestions or questions, please
+            feel free to post your{" "}
+            <a
+              href="https://www.civictechfredericton.com/gmpfeedback.html"
+              target="_blank"
+              rel="noreferrer"
+            >
+            {" "}
+            feedback
+            </a>
+            </Typography>
+            <Box display= "flex" alignItems= "center" justifyContent="center">
+            <img src="/images/CivicTechLogo.png" alt="CivicTechLogo" style={{ width: '12%', height: 'auto', marginTop: '10px' }}/>
+            </Box>
+            </div>
     </Box>
   );
 }
