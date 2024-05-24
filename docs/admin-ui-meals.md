@@ -62,7 +62,7 @@ To view a meal, please follow the steps below:
 4. **View the Meal**
 	- Click the drop-down arrow.
 	- Click the Show button to view the meal.
-	- Click the necessary tabs (Method, Summary, Nutrition and ingredients) if needed to view those sections of a meal.
+	- Click the necessary tabs (Method, Summary, and Nutrition) as needed to view those sections of a meal.
 
 ![View a Meal](view-a-meal.jpeg)
 	
@@ -77,7 +77,7 @@ To edit a meal, please follow the steps below:
 1. **Navigate to the Meal Plan Products Admin Page**
     - Open your web browser and go to GoodMealPlan Admin.
     - If you're not already logged in, sign in to your account
-    - Once logged in, you'll be directed to the new page from left pane select products list. 
+    - Once logged in, you'll be directed to the new page from left pane select "Products". 
 
 
 2. **Select the Meal tab.**
@@ -106,7 +106,7 @@ To delete a meal, please follow the steps below:
 1. **Navigate to the Meal Plan Products Admin Page**
     - Open your web browser and go to GoodMealPlan
     - If you're not already logged in, sign in to your account
-    - Once logged in, you'll be directed to the new page from left pane select products list. 
+    - Once logged in, you'll be directed to the new page from left pane select "Products". 
 
 2. **Select the Meal tab.**
     - Click the Meal tab on the top left sidebar of the admin-ui page. 

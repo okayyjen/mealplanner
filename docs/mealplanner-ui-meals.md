@@ -114,8 +114,7 @@ To delete a meal, please follow the steps below:
 ### 1.5 Printing a Meal
 
 ### Overview
-Printing a meal allows users to print meal
-To delete a meal, please follow the steps below:
+To print a meal, please follow the steps below:
 
 **Steps to print a meal**
 
