@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import { Checkbox } from '@mui/material';
 import { useState } from 'react';
@@ -20,9 +19,15 @@ export const TermsAndConditions = () => {
     setIsAccepted(!isAccepted);
   };
   const handleAccept = async () => {
-    updatePersonTerms(true);
-    const data = await fetchCurrentPerson();
-    navigate("/mealplans");
+    try {
+      const accepted = await updatePersonTerms(true);
+      if (accepted) {
+        await fetchCurrentPerson();
+      }
+      navigate("/mealplans");
+    } catch (error) {
+      console.error("Failed to update terms acceptance:", error);
+    }
   };
 
   if (isTermsPage && currentPerson.personID === "") {
