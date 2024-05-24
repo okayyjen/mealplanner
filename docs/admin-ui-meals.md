@@ -10,23 +10,20 @@ To create a meal, please follow the steps below:
 
 **Steps to Create a Meal**
 
-1. **Navigate to the Meal Plan Products Admin Page**
-    - Open your web browser and go to GoodMealPlan
-If you're not already logged in, sign in to your account
-Once logged in, you'll be directed to the new page from left pane select products list. Note: You must be an Admin to create a Meal.
+1. **Navigate to the Meal Admin Page**
+    - Open your web browser and go to GoodMealPlan Admin URL
+    - If you're not already logged in, sign in to your account
+    - Once logged in, you'll be directed to the main page 
+    - From left pane select "Meals". 
 
+    Note: You must be an Admin to create a Meal.
 
-2. **Select the Meal tab.**
-    - Click the Meal tab on the top left sidebar of the admin-ui page of the MealPlanner app, similar to the screenshot below. 
-
-
-
-3. **Click the Create button**
+2. **Click the Create button**
     - Click the `Create` button in the top right part of the admin-ui page. 
     
-![Create Meal](create-meal.jpeg)
+    ![Create Meal](create-meal.jpeg)
 
-4. **Add the Meal details and Create the Meal**
+3. **Add the Meal details and Create the Meal**
 	- Enter the Name of the meal in English or/and French.
 	- Enter the Code for the meal.
 	- Enter the necessary tags for the Meal.
@@ -51,14 +48,13 @@ To view a meal, please follow the steps below:
 **Steps to View a Meal**
 
 1. **Navigate to the Meal Plan Products Admin Page**
-    - Open your web browser and go to GoodMealPlan
-If you're not already logged in, sign in to your account
-Once logged in, you'll be directed to the new page from left pane select products list. 
+    - Open your web browser and go to GoodMealPlan Admin. 
+    - If you're not already logged in, sign in to your account
+    - Once logged in, you'll be directed to the new page from left pane select products list. 
 
 
 2. **Select the Meal tab.**
-    - Click the Meal tab on the top left sidebar of the admin-ui page of the MealPlanner app, similar to the screenshot below. 
- 
+    - Click on "Meals" on the top left sidebar of the admin-ui page. 
 
 3. **Search for a meal by its name.**
     - On the Search column of the admin page for the MealPlanner app, search for the meal by its name.
@@ -79,13 +75,13 @@ To edit a meal, please follow the steps below:
 **Steps to View a Meal**
 
 1. **Navigate to the Meal Plan Products Admin Page**
-    - Open your web browser and go to GoodMealPlan
-If you're not already logged in, sign in to your account
-Once logged in, you'll be directed to the new page from left pane select products list. 
+    - Open your web browser and go to GoodMealPlan Admin.
+    - If you're not already logged in, sign in to your account
+    - Once logged in, you'll be directed to the new page from left pane select products list. 
 
 
 2. **Select the Meal tab.**
-    - Click the Meal tab on the top left sidebar of the admin-ui page of the MealPlanner app, similar to the screenshot below. 
+    - Click on "Meals" on the top left sidebar of the admin-ui page. 
  
 
 3. **Search for a meal by its name.**
@@ -109,20 +105,14 @@ To delete a meal, please follow the steps below:
 
 1. **Navigate to the Meal Plan Products Admin Page**
     - Open your web browser and go to GoodMealPlan
-If you're not already logged in, sign in to your account
-Once logged in, you'll be directed to the new page from left pane select products list. 
-
+    - If you're not already logged in, sign in to your account
+    - Once logged in, you'll be directed to the new page from left pane select products list. 
 
 2. **Select the Meal tab.**
-    - Click the Meal tab on the top left sidebar of the admin-ui page of the MealPlanner app, similar to the screenshot below. 
+    - Click the Meal tab on the top left sidebar of the admin-ui page. 
  
-
-
-
 3. **Search for a meal by its name.**
     - On the Search column of the admin page for the MealPlanner app, search for the meal by its name.
-
-
 
 4. **Delete the Meal**
 	- Click on the checkbox on the right side of the drop-down arrow
