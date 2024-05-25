@@ -116,6 +116,7 @@ export const Meal = () => {
     : "No data";
 
   const allIngredients = meal?.ingredients?.edges.map((ingredient) => ingredient.node);
+  const substituteIngredients = allIngredients?.filter((ingredient) => ingredient.substituteIngredientId !== null);
   const theme = useTheme();
   const tagStyle = {
     color: "white",
@@ -316,20 +317,22 @@ export const Meal = () => {
                   </thead>
                   <tbody>
                     {allIngredients?.map((ingredient) => {
+                      const substitute = substituteIngredients?.find((sub) => sub.substituteIngredientId === ingredient.rowId)
                       return (
                         <tr key={ingredient.rowId}>
                           <td>
                             {ingredient.substituteIngredientId === null && ingredient.name}
-                            {ingredient.substituteIngredientId && (
+                            {substitute && (
                               <>
+                                <br />
                                 <span style={{ fontStyle: "italic", marginLeft: "0.5rem" }}>
-                                  Substitute: {ingredient?.name}
+                                  Substitute: {substitute.name}
                                 </span>
                                 <br />
                                 <span style={{ fontStyle: "italic", marginLeft: "0.5rem" }}>
                                   Reason:
-                                  {ingredient.substituteReason
-                                    ? ingredient.substituteReason
+                                  {substitute
+                                    ? substitute.substituteReason
                                     : "Not specified"}
                                 </span>
                               </>
@@ -337,10 +340,10 @@ export const Meal = () => {
                           </td>
                           <td style={{ textAlign: "center", verticalAlign: "top" }}>
                             {ingredient.substituteIngredientId === null && ingredient.quantity}
-                            {/* {ingredient.quantity} */}
-                            {ingredient.substituteIngredient && (
+                            {substitute && (
                               <>
-                                <span>{ingredient.quantity}</span>
+                                <br />
+                                <span>{substitute.quantity}</span>
                                 <br />
                               </>
                             )}
@@ -348,10 +351,10 @@ export const Meal = () => {
                           <td style={{ paddingLeft: "0.5rem" }}>
                             {ingredient.substituteIngredientId === null && ingredient.unit}
                             {/* {ingredient.unit} */}
-                            {ingredient.substituteIngredient && (
+                            {substitute && (
                               <>
-                                <span>{ingredient.unit}</span>
                                 <br />
+                                <span>{substitute.unit}</span>
                               </>
                             )}
                           </td>
