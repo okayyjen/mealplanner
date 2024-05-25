@@ -117,6 +117,8 @@ export const Meal = () => {
 
   const allIngredients = meal?.ingredients?.edges.map((ingredient) => ingredient.node);
   const substituteIngredients = allIngredients?.filter((ingredient) => ingredient.substituteIngredientId !== null);
+  console.log(allIngredients);
+  console.log(substituteIngredients);
   const theme = useTheme();
   const tagStyle = {
     color: "white",
@@ -317,50 +319,61 @@ export const Meal = () => {
                   </thead>
                   <tbody>
                     {allIngredients?.map((ingredient, key) => {
-                      const substitute = substituteIngredients?.find((sub) => sub.substituteIngredientId === ingredient.rowId);
-                      console.log(substitute);
+                      const substitute = substituteIngredients?.filter((sub) => sub.substituteIngredientId === ingredient.rowId);
                       return ingredient.substituteIngredientId === null ? (
                         <tr key={key}>
                           <td>
                             {ingredient.name}
-                            {substitute && (
-                              <>
-                                <br />
-                                <span style={{ fontStyle: "italic", marginLeft: "0.5rem" }}>
-                                  Substitute: {substitute.name}
-                                </span>
-                                <br />
-                                <span style={{ fontStyle: "italic", marginLeft: "0.5rem" }}>
-                                  Reason:{" "}
-                                  {substitute.substituteReason
-                                    ? substitute.substituteReason
-                                    : "Not specified"}
-                                </span>
-                              </>
-                            )}
+                            {substitute &&
+                              substitute.map((sub) => {
+                                return (
+                                  <>
+                                    <br />
+                                    <span style={{ fontStyle: "italic", marginLeft: "0.5rem" }}>
+                                      Substitute: {sub.name}
+                                    </span>
+                                    <br />
+                                    <span style={{ fontStyle: "italic", marginLeft: "0.5rem" }}>
+                                      Reason:{" "}
+                                      {sub.substituteReason
+                                        ? sub.substituteReason
+                                        : "Not specified"}
+                                    </span>
+                                  </>
+                                );
+                              })}
                           </td>
                           <td style={{ textAlign: "center", verticalAlign: "top" }}>
                             {ingredient.quantity}
-                            {substitute && (
-                              <>
-                                <br />
-                                <span>{substitute.quantity}</span>
-                                <br />
-                              </>
-                            )}
+                            {substitute &&
+                              substitute.map((sub) => {
+                                return (
+                                  <>
+                                    <br />
+                                    <span>{sub.quantity}</span>
+                                    <br />
+                                  </>
+                                );
+                              })}
                           </td>
-                          <td style={{ paddingLeft: "0.5rem" }}>
+                          <td style={{ textAlign: "center", verticalAlign: "top" }}>
                             {ingredient.unit}
-                            {substitute && (
-                              <>
-                                <br />
-                                <span>{substitute.unit}</span>
-                              </>
-                            )}
+                            {substitute &&
+                              substitute.map((sub) => {
+                                return (
+                                  <>
+                                    <br />
+                                    <span>{sub.unit}</span>
+                                    <br />
+                                  </>
+                                );
+                              })}
                           </td>
                           <td></td>
                         </tr>
-                      ): <></>;
+                      ) : (
+                        <></>
+                      );
                     })}
                   </tbody>
                 </table>
