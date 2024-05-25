@@ -147,8 +147,6 @@ export const MealPlanCard = (props: MealPlanCardProps) => {
                     </Button>
                   </DialogActions>
                 </Dialog>
-                {getCurrentPerson().personRole === "app_admin" ||
-                getCurrentPerson().personRole === "app_meal_designer" ? (
                   <IconButton
                     aria-label="duplicate"
                     onClick={(e) => {
@@ -159,7 +157,6 @@ export const MealPlanCard = (props: MealPlanCardProps) => {
                   >
                     <ContentCopy />
                   </IconButton>
-                ) : null}
               </div>
             }
             title={mealplan.nameEn}
