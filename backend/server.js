@@ -15,6 +15,7 @@ const app = express();
 app.use(
   session({
     secret: process.env.JWT_SECRET,
+    secure: process.env.NODE_ENV === "production",
     httpOnly: true,
   })
 );
