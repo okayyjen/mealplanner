@@ -33,6 +33,17 @@ const IngredientActions = ({ id, mealName }: { id: string; mealName: string }) =
   );
 };
 
+const EmptyIngredient = ({ id }: { id: string }) => {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '30em', width: '100%', paddingBottom: '11em' }}>
+      <div style={{ textAlign: 'center', color: '#00000099' }}>
+        <h2>No Ingredients Yet.</h2>
+        <CreateIngredientButton id={id} />
+      </div>
+    </div>
+  );
+};
+
 export const IngredientList = () => {
   const { id } = useParams();
   const [mealName, setMealName] = useState('');
@@ -55,7 +66,7 @@ export const IngredientList = () => {
 
   return (
     <>
-      {id && <List resource="ingredients" filter={{ mealId: id }} actions={<IngredientActions id={id} mealName={mealName}/>}>
+      {id && <List resource="ingredients" filter={{ mealId: id }} actions={<IngredientActions id={id} mealName={mealName}/>} empty={<EmptyIngredient id={id}/>}> 
         <Datagrid>
           <NumberField source="code" label="Ingredient code" />
           <TextField source="name" label="Ingredient name" />
