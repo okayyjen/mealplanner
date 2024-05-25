@@ -316,12 +316,13 @@ export const Meal = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {allIngredients?.map((ingredient) => {
-                      const substitute = substituteIngredients?.find((sub) => sub.substituteIngredientId === ingredient.rowId)
-                      return (
-                        <tr key={ingredient.rowId}>
+                    {allIngredients?.map((ingredient, key) => {
+                      const substitute = substituteIngredients?.find((sub) => sub.substituteIngredientId === ingredient.rowId);
+                      console.log(substitute);
+                      return ingredient.substituteIngredientId === null ? (
+                        <tr key={key}>
                           <td>
-                            {ingredient.substituteIngredientId === null && ingredient.name}
+                            {ingredient.name}
                             {substitute && (
                               <>
                                 <br />
@@ -331,7 +332,7 @@ export const Meal = () => {
                                 <br />
                                 <span style={{ fontStyle: "italic", marginLeft: "0.5rem" }}>
                                   Reason:{" "}
-                                  {substitute
+                                  {substitute.substituteReason
                                     ? substitute.substituteReason
                                     : "Not specified"}
                                 </span>
@@ -339,7 +340,7 @@ export const Meal = () => {
                             )}
                           </td>
                           <td style={{ textAlign: "center", verticalAlign: "top" }}>
-                            {ingredient.substituteIngredientId === null && ingredient.quantity}
+                            {ingredient.quantity}
                             {substitute && (
                               <>
                                 <br />
@@ -349,8 +350,7 @@ export const Meal = () => {
                             )}
                           </td>
                           <td style={{ paddingLeft: "0.5rem" }}>
-                            {ingredient.substituteIngredientId === null && ingredient.unit}
-                            {/* {ingredient.unit} */}
+                            {ingredient.unit}
                             {substitute && (
                               <>
                                 <br />
@@ -360,7 +360,7 @@ export const Meal = () => {
                           </td>
                           <td></td>
                         </tr>
-                      );
+                      ): <></>;
                     })}
                   </tbody>
                 </table>
