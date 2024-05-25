@@ -330,7 +330,7 @@ export const Meal = () => {
                                 </span>
                                 <br />
                                 <span style={{ fontStyle: "italic", marginLeft: "0.5rem" }}>
-                                  Reason:
+                                  Reason:{" "}
                                   {substitute
                                     ? substitute.substituteReason
                                     : "Not specified"}
