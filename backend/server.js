@@ -11,6 +11,7 @@ const session = require("cookie-session");
 const { LogoutPlugin } = require("./extensions/logout");
 
 const app = express();
+app.set('trust proxy', 1);
 
 app.use(
   session({
