@@ -117,8 +117,6 @@ export const Meal = () => {
 
   const allIngredients = meal?.ingredients?.edges.map((ingredient) => ingredient.node);
   const substituteIngredients = allIngredients?.filter((ingredient) => ingredient.substituteIngredientId !== null);
-  console.log(allIngredients);
-  console.log(substituteIngredients);
   const theme = useTheme();
   const tagStyle = {
     color: "white",
@@ -369,7 +367,6 @@ export const Meal = () => {
                                 );
                               })}
                           </td>
-                          <td></td>
                         </tr>
                       ) : (
                         <></>
