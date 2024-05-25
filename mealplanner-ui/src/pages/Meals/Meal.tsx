@@ -116,6 +116,7 @@ export const Meal = () => {
     : "No data";
 
   const allIngredients = meal?.ingredients?.edges.map((ingredient) => ingredient.node);
+  const substituteIngredients = allIngredients?.filter((ingredient) => ingredient.substituteIngredientId !== null);
   const theme = useTheme();
   const tagStyle = {
     color: "white",
@@ -315,49 +316,51 @@ export const Meal = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {allIngredients?.map((ingredient) => {
-                      return (
-                        <tr key={ingredient.rowId}>
+                    {allIngredients?.map((ingredient, key) => {
+                      const substitute = substituteIngredients?.find((sub) => sub.substituteIngredientId === ingredient.rowId);
+                      console.log(substitute);
+                      return ingredient.substituteIngredientId === null ? (
+                        <tr key={key}>
                           <td>
-                            {ingredient.substituteIngredientId === null && ingredient.name}
-                            {ingredient.substituteIngredientId && (
+                            {ingredient.name}
+                            {substitute && (
                               <>
+                                <br />
                                 <span style={{ fontStyle: "italic", marginLeft: "0.5rem" }}>
-                                  Substitute: {ingredient?.name}
+                                  Substitute: {substitute.name}
                                 </span>
                                 <br />
                                 <span style={{ fontStyle: "italic", marginLeft: "0.5rem" }}>
-                                  Reason:
-                                  {ingredient.substituteReason
-                                    ? ingredient.substituteReason
+                                  Reason:{" "}
+                                  {substitute.substituteReason
+                                    ? substitute.substituteReason
                                     : "Not specified"}
                                 </span>
                               </>
                             )}
                           </td>
                           <td style={{ textAlign: "center", verticalAlign: "top" }}>
-                            {ingredient.substituteIngredientId === null && ingredient.quantity}
-                            {/* {ingredient.quantity} */}
-                            {ingredient.substituteIngredient && (
+                            {ingredient.quantity}
+                            {substitute && (
                               <>
-                                <span>{ingredient.quantity}</span>
+                                <br />
+                                <span>{substitute.quantity}</span>
                                 <br />
                               </>
                             )}
                           </td>
                           <td style={{ paddingLeft: "0.5rem" }}>
-                            {ingredient.substituteIngredientId === null && ingredient.unit}
-                            {/* {ingredient.unit} */}
-                            {ingredient.substituteIngredient && (
+                            {ingredient.unit}
+                            {substitute && (
                               <>
-                                <span>{ingredient.unit}</span>
                                 <br />
+                                <span>{substitute.unit}</span>
                               </>
                             )}
                           </td>
                           <td></td>
                         </tr>
-                      );
+                      ): <></>;
                     })}
                   </tbody>
                 </table>
