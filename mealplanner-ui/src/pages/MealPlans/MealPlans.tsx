@@ -111,12 +111,14 @@ export const MealPlans = () => {
                   />
               }
             />
-            <FormControlLabel
-              value="template"
-              control={<Radio />}
-              label="Template"
-              checked={searchType === 'template'}
-            />
+            {getCurrentPerson().personRole !== "app_user" ? (
+                <FormControlLabel
+                value="template"
+                control={<Radio />}
+                label="Template"
+                checked={searchType === 'template'}
+              />
+            ) : null}
             <FormControlLabel
               value="tags"
               control={<Radio />}
