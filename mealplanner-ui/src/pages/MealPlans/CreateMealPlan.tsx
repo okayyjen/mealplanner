@@ -132,11 +132,13 @@ export const CreateMealPlan = ({ connection, refetch }: { connection: string, re
               control={<Radio checked={planType === 'mealPlan'}/>}
               label="Create New Meal Plan"
             />
-            <FormControlLabel
-              value="template"
-              control={<Radio checked={planType === 'template'}/>}
-              label="Create New Template"
-            />
+            {getCurrentPerson().personRole !== "app_user" ? (
+                <FormControlLabel
+                value="template"
+                control={<Radio checked={planType === 'template'}/>}
+                label="Create New Template"
+              />
+            ) : null}
           </RadioGroup>
         </FormControl>
         </Grid>
