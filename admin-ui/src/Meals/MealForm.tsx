@@ -38,7 +38,7 @@ export const MealForm = () => {
       <TextInput source="servingsSizeUnit" fullWidth />
       <NumberInput source="nutritionRating" fullWidth />
       <RichTextInput source="method" fullWidth />
-      <TextInput source="tips" fullWidth />
+      <RichTextInput source="tips" fullWidth />
     </SimpleForm>
   );
 };
