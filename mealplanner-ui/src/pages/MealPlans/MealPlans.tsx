@@ -9,6 +9,7 @@ import {
 import { graphql } from "babel-plugin-relay/macro";
 import { Suspense, useState } from "react";
 import { useLazyLoadQuery, useRefetchableFragment } from "react-relay";
+import { getCurrentPerson } from "../../state/state";
 import { CreateMealPlan } from "./CreateMealPlan";
 import { MealPlanCard } from "./MealPlanCard";
 import { MealPlansTags, MealPlansTagsFragment } from "./MealPlansTags";
