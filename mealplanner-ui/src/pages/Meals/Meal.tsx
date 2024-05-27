@@ -389,7 +389,13 @@ export const Meal = () => {
           </Grid>
           <Grid item xs={12}>
             <Typography variant="h6">Tips</Typography>
-            <Typography variant="body1"> {meal?.tips}</Typography>
+            <Typography variant="body1"> 
+            <div
+                dangerouslySetInnerHTML={{
+                  __html: meal?.tips || "No Tips description",
+                }}
+            />
+            </Typography>
             Nutrition Details is available with the admin.
           </Grid>
         </Grid>
