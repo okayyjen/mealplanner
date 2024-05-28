@@ -169,15 +169,6 @@ export const ShoppingList = () => {
   });
   return (
     <>
-    <style>
-        {`
-          @media print and (orientation: portrait) {
-            .rowHeightPortrait {
-              height: 120px; /* Adjust this value as needed */
-            }
-          }
-        `}
-      </style>
       {Array.from(mealsByIngredient.entries()).length === 0 ? (
           <h3 style={{ textAlign: "center" }}>There are no meals added to this mealplan </h3>
       ) : (
@@ -207,7 +198,7 @@ export const ShoppingList = () => {
           <Grid item xs={12}>
             <Typography variant="body2" style={{ marginBottom: '1em' }}>
               <div style={{ fontStyle: 'italic' }}>
-                <strong>Disclaimer:</strong> 
+                <strong>Disclaimer:</strong>
                 The suggested products are intended to be used as reference for informational purposes only. This is not a recommendation of where to buy. Clients need to research and verify which is suitable to their needs independently. Prices are indicative as per the data procured in March 2024. The prices may vary subject to the time of purchase, store, and mode of purchase.
               </div>
             </Typography>
@@ -223,7 +214,7 @@ export const ShoppingList = () => {
               </TableHead>
               <TableBody>
               {Array.from(mealsByIngredient.entries()).map(([ingredientName, ingredientDetails], index) => (
-                  <TableRow className="rowHeightPortrait" key={ingredientName}  style={((index + 1) % 6 === 0) ? { breakBefore: "always" } : {}} >
+                  <TableRow key={ingredientName}  style={((index + 1) % 5 === 0) ? { breakBefore: "always" } : {}} >
                     <TableCell>
                       <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Checkbox />
